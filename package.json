@@ -1,0 +1,14 @@
+{
+  "name": "spotify-visualizer-pro",
+  "version": "1.0.0",
+  "description": "Professional Spotify Visualizer with real-time effects",
+  "scripts": {
+    "dev": "concurrently \"cd backend && python app.py\" \"cd frontend && python -m http.server 3000\"",
+    "backend": "cd backend && python app.py",
+    "frontend": "cd frontend && python -m http.server 3000",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

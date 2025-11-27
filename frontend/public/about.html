@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de | Spotify Visualizer PRO</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="static-page-body">
+    <header class="static-header">
+        <div class="static-header__left">
+            <span class="static-logo-icon">🎵</span>
+            <div class="static-logo-text">
+                <span class="static-logo-title">Spotify Visualizer PRO</span>
+                <span class="static-logo-subtitle">by You</span>
+            </div>
+        </div>
+        <nav class="static-nav">
+            <a href="index.html">Inicio</a>
+            <a href="about.html" class="active">Acerca de</a>
+            <a href="settings.html">Ajustes</a>
+        </nav>
+    </header>
+
+    <main class="static-main">
+        <section class="static-section">
+            <h1>Acerca de este proyecto</h1>
+            <p>
+                Spotify Visualizer PRO es un playground donde se combinan:
+            </p>
+            <ul>
+                <li>La <strong>API de Spotify</strong> (perfil, top tracks, recientes, audio features).</li>
+                <li>Un backend en <strong>Flask</strong> que maneja el OAuth y los endpoints.</li>
+                <li>Un frontend en <strong>JavaScript puro</strong> con un visualizador en canvas.</li>
+            </ul>
+        </section>
+
+        <section class="static-section">
+            <h2>¿Qué hace el visualizer?</h2>
+            <p>
+                Cada canción que suena en tu cuenta de Spotify se traduce en:
+            </p>
+            <ul>
+                <li><strong>Nodos y conexiones</strong> (modo Partículas) que reaccionan a la energía y al tempo.</li>
+                <li><strong>Barras tipo ecualizador</strong> (modo Spectrum) animadas según la “bailabilidad”.</li>
+                <li><strong>Colores dinámicos</strong> extraídos de la portada del álbum, mezclados con las audio features.</li>
+            </ul>
+        </section>
+
+        <section class="static-section">
+            <h2>Stack técnico</h2>
+            <div class="static-grid">
+                <div class="static-card">
+                    <h3>Backend</h3>
+                    <p>Flask + requests + Flask-CORS, manejando:</p>
+                    <ul>
+                        <li>OAuth 2.0 con Spotify.</li>
+                        <li>Endpoints `/api/current-track`, `/api/top-tracks`, `/api/stats`, etc.</li>
+                    </ul>
+                </div>
+                <div class="static-card">
+                    <h3>Frontend</h3>
+                    <p>JavaScript modular sin frameworks:</p>
+                    <ul>
+                        <li>AuthManager + SpotifyAPIService.</li>
+                        <li>LayoutManager para la UI tipo dashboard.</li>
+                        <li>VisualizerManager para efectos visuales.</li>
+                    </ul>
+                </div>
+                <div class="static-card">
+                    <h3>Visual</h3>
+                    <p>
+                        Canvas 2D, gradientes, glow, y un tema que se adapta a cada canción.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="static-footer">
+        <p>Hecho para aprender, experimentar y escuchar música con estilo 💚</p>
+    </footer>
+</body>
+</html>

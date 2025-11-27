@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes | Spotify Visualizer PRO</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="static-page-body">
+    <header class="static-header">
+        <div class="static-header__left">
+            <span class="static-logo-icon">🎵</span>
+            <div class="static-logo-text">
+                <span class="static-logo-title">Spotify Visualizer PRO</span>
+                <span class="static-logo-subtitle">Settings</span>
+            </div>
+        </div>
+        <nav class="static-nav">
+            <a href="index.html">Inicio</a>
+            <a href="about.html">Acerca de</a>
+            <a href="settings.html" class="active">Ajustes</a>
+        </nav>
+    </header>
+
+    <main class="static-main">
+        <section class="static-section">
+            <h1>Ajustes del visualizador</h1>
+            <p>
+                Esta página está pensada para controlar opciones avanzadas de tu visualizer.
+                Puedes usarla como panel de configuración mientras vas iterando el proyecto.
+            </p>
+        </section>
+
+        <section class="static-section">
+            <h2>General</h2>
+            <div class="static-grid">
+                <div class="static-card">
+                    <h3>Modo de visualización</h3>
+                    <p>Selecciona el modo por defecto al abrir el visualizer.</p>
+                    <ul>
+                        <li>Partículas (red de nodos).</li>
+                        <li>Spectrum (barras tipo ecualizador).</li>
+                    </ul>
+                    <p class="static-hint">
+                        Por ahora esto se controla dentro de la app principal, pero aquí
+                        podrías guardar la preferencia en localStorage.
+                    </p>
+                </div>
+                <div class="static-card">
+                    <h3>Intensidad visual</h3>
+                    <p>
+                        Podrías permitir configurar la cantidad de nodos, velocidad,
+                        brillo, etc., para distintos niveles de “locura visual”.
+                    </p>
+                </div>
+                <div class="static-card">
+                    <h3>Colores personalizados</h3>
+                    <p>
+                        El visualizer se basa en la portada del álbum, pero aquí podrías
+                        añadir overrides manuales (paletas fijas, temas claros/oscuro, etc.).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="static-section">
+            <h2>Ideas para el futuro</h2>
+            <ul>
+                <li>Guardar presets de visualización.</li>
+                <li>Activar/desactivar efectos (glow, conexiones, barras, etc.).</li>
+                <li>Configurar la frecuencia de actualización del “current track”.</li>
+                <li>Atajos de teclado para cambiar de modo en vivo.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="static-footer">
+        <p>Este panel es un sandbox de configuración. Tú mandas qué tan pro se vuelve. ⚙️</p>
+    </footer>
+</body>
+</html>

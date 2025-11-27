@@ -1,0 +1,23 @@
+# --- Python ---
+venv/
+.venv/
+.env
+backend/.env
+*.pyc
+__pycache__/
+*.log
+
+# --- Node / Frontend (por si luego usas npm) ---
+node_modules/
+dist/
+build/
+
+# --- OS / Editores ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- Otros temporales ---
+*.tmp
+*.swp

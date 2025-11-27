@@ -1,0 +1,583 @@
+/* styles/main.css */
+/* Reset básico */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables de tema */
+:root {
+    --bg-body: #020617;
+    --bg-elevated: #020617;
+    --bg-sidebar: rgba(15, 23, 42, 0.98);
+    --bg-card: rgba(15, 23, 42, 0.95);
+    --bg-card-soft: rgba(15, 23, 42, 0.85);
+
+    --border-subtle: rgba(148, 163, 184, 0.28);
+    --border-strong: rgba(148, 163, 184, 0.45);
+
+    --text-main: #e5e7eb;
+    --text-soft: #9ca3af;
+    --text-muted: #6b7280;
+
+    --accent-primary: #22c55e; /* verde spotify-ish */
+    --accent-primary-soft: rgba(34, 197, 94, 0.1);
+    --accent-secondary: #38bdf8; /* cyan */
+    --accent-alert: #f97316; /* naranja */
+
+    --radius-lg: 1.5rem;
+    --radius-md: 0.9rem;
+    --radius-sm: 0.6rem;
+
+    --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.9);
+    --shadow-subtle: 0 10px 30px rgba(15, 23, 42, 0.65);
+
+    --sidebar-width: 260px;
+}
+
+/* Body general */
+body {
+    min-height: 100vh;
+    background: var(--bg-body);
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Enlaces */
+a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Scrollbar global */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.7);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 1);
+}
+
+/* Root del app SPA */
+.app-root {
+    min-height: 100vh;
+}
+
+/* Shell principal: sidebar + main */
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+}
+
+/* ================= SIDEBAR ================= */
+
+.app-sidebar {
+    width: var(--sidebar-width);
+    padding: 1.75rem 1.25rem;
+    background: radial-gradient(circle at top left, #22c55e19 0, transparent 55%),
+                radial-gradient(circle at bottom left, #0ea5e955 0, rgba(15, 23, 42, 0.98) 55%),
+                var(--bg-sidebar);
+    border-right: 1px solid rgba(15, 23, 42, 0.9);
+    box-shadow: 15px 0 40px rgba(15, 23, 42, 0.95);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 3;
+}
+
+/* Logo sidebar */
+.app-logo {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.app-logo__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 0, #22c55e 0, #16a34a 40%, #022c22 100%);
+    color: #ecfdf5;
+    font-size: 1.4rem;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.7);
+}
+
+.app-logo__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-logo__title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #e5e7eb;
+}
+
+.app-logo__subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* User badge en sidebar */
+.app-sidebar__user {
+    margin-top: 0.5rem;
+}
+
+/* Navegación sidebar */
+.app-sidebar__nav {
+    margin-top: 1.2rem;
+}
+
+.app-sidebar__nav-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+}
+
+/* Footer sidebar */
+.app-sidebar__footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.app-sidebar__note {
+    opacity: 0.7;
+}
+
+/* ================= MAIN ================= */
+
+.app-main {
+    flex: 1;
+    min-height: 100vh;
+    padding: 1.75rem 1.9rem;
+    position: relative;
+    overflow-y: auto;
+    background:
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.12) 0, transparent 50%),
+        radial-gradient(circle at bottom left, rgba(34, 197, 94, 0.16) 0, transparent 55%),
+        linear-gradient(135deg, #020617 0%, #020617 45%, #020617 100%);
+}
+
+/* Header principal */
+.app-main__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 1.8rem;
+}
+
+.app-main__header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.app-main__title {
+    font-size: 1.5rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #e5e7eb;
+}
+
+.app-main__subtitle {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+}
+
+/* Mini user en header */
+.app-main__header-user {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    background: radial-gradient(circle at top left, rgba(15, 118, 110, 0.45) 0, rgba(15, 23, 42, 0.95) 50%);
+    border: 1px solid rgba(45, 212, 191, 0.4);
+    box-shadow: var(--shadow-subtle);
+}
+
+.header-user__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 10%, #22c55e 0, #16a34a 60%, #052e16 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ecfdf5;
+}
+
+.header-user__name {
+    font-size: 0.85rem;
+}
+
+.header-user__tag {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* ================= SECCIONES ================= */
+
+.app-section {
+    margin-bottom: 2rem;
+}
+
+/* Slight separation between sections */
+.app-section--nowplaying {
+    margin-bottom: 1.4rem;
+}
+
+.app-section--visualizer {
+    margin-bottom: 1.8rem;
+}
+
+/* ================= Now playing card ================= */
+
+.now-playing-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1.5fr);
+    gap: 1.4rem;
+    align-items: center;
+    padding: 1.4rem 1.6rem;
+    border-radius: var(--radius-lg);
+    background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12) 0, transparent 50%),
+                radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.12) 0, transparent 55%),
+                var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.now-playing-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 0 0, rgba(16, 185, 129, 0.25) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.25) 0, transparent 60%);
+    opacity: 0.25;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.now-playing-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.now-playing-card__cover {
+    width: 92px;
+    height: 92px;
+    border-radius: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 0, #0f172a 0, #020617 60%);
+    font-size: 1.6rem;
+    color: var(--text-soft);
+    box-shadow: 0 0 35px rgba(15, 23, 42, 0.95);
+}
+
+.now-playing-card__cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.now-playing-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.now-playing-card__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.now-playing-card__artist {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+}
+
+.now-playing-card__meta {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.now-playing-card__meta-item {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: var(--text-soft);
+}
+
+/* ================= Listas de tracks ================= */
+
+.top-tracks-list,
+.recent-tracks-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.ui-empty-message {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding: 0.75rem 0;
+}
+
+/* ================= Stats ================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.8rem;
+    margin-top: 0.9rem;
+}
+
+/* ================= STATIC PAGES (about / settings) ================= */
+
+.static-page-body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, rgba(34, 197, 94, 0.18) 0, transparent 50%),
+                radial-gradient(circle at bottom, rgba(56, 189, 248, 0.18) 0, transparent 55%),
+                #020617;
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.static-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.85));
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.static-header__left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.static-logo-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 0, #22c55e 0, #16a34a 60%, #052e16 100%);
+    color: #ecfdf5;
+    font-size: 1.1rem;
+}
+
+.static-logo-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+}
+
+.static-logo-title {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.static-logo-subtitle {
+    color: var(--text-soft);
+    font-size: 0.7rem;
+}
+
+.static-nav {
+    display: flex;
+    gap: 0.9rem;
+    font-size: 0.85rem;
+}
+
+.static-nav a {
+    color: var(--text-soft);
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+}
+
+.static-nav a:hover {
+    color: var(--text-main);
+    background: rgba(15, 23, 42, 0.7);
+}
+
+.static-nav a.active {
+    color: #ecfdf5;
+    background: var(--accent-primary-soft);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.static-main {
+    max-width: 960px;
+    margin: 1.8rem auto 2.5rem;
+    padding: 0 1.5rem;
+}
+
+.static-section {
+    margin-bottom: 1.8rem;
+}
+
+.static-section h1,
+.static-section h2 {
+    margin-bottom: 0.6rem;
+}
+
+.static-section p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.static-section ul {
+    margin-top: 0.45rem;
+    padding-left: 1rem;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.static-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.static-card {
+    background: rgba(15, 23, 42, 0.94);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    padding: 1.1rem 1.1rem;
+    box-shadow: var(--shadow-subtle);
+}
+
+.static-card h3 {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+}
+
+.static-card p {
+    font-size: 0.9rem;
+}
+
+.static-hint {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.static-footer {
+    padding: 1rem 1.5rem 1.4rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .app-shell {
+        flex-direction: column;
+    }
+
+    .app-sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 1.4rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .app-sidebar__user {
+        display: none;
+    }
+
+    .app-sidebar__nav-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .app-sidebar__footer {
+        margin-top: 0;
+        margin-left: auto;
+        align-items: flex-end;
+    }
+
+    .app-main {
+        padding: 1.3rem 1.2rem 1.7rem;
+    }
+
+    .now-playing-card {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .app-main__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .app-main__header-user {
+        align-self: flex-end;
+    }
+
+    .top-tracks-list,
+    .recent-tracks-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

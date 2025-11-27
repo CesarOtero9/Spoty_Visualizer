@@ -1,0 +1,334 @@
+/* styles/components.css */
+
+/* ========== Botones genéricos UI ========== */
+
+.ui-btn {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.42rem 0.85rem;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    background: transparent;
+    color: #e5e7eb;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+}
+
+.ui-btn--full {
+    width: 100%;
+    justify-content: center;
+}
+
+.ui-btn--primary {
+    background: radial-gradient(circle at top, #22c55e 0, #15803d 60%, #052e16 100%);
+    border-color: rgba(74, 222, 128, 0.7);
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.6);
+    color: #ecfdf5;
+}
+
+.ui-btn--primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 28px rgba(34, 197, 94, 0.75);
+}
+
+.ui-btn--ghost {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: rgba(148, 163, 184, 0.4);
+    color: #e5e7eb;
+}
+
+.ui-btn--ghost:hover {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: rgba(148, 163, 184, 0.8);
+}
+
+.ui-btn--md {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.ui-btn--sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+}
+
+.ui-btn__label {
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Icono dentro de botones */
+.ui-icon {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ========== Títulos de sección ========== */
+
+.ui-section-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    margin-bottom: 0.8rem;
+}
+
+.ui-section-title__main {
+    font-size: 0.9rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9ca3af;
+}
+
+.ui-section-title__subtitle {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+/* ========== User Badge ========== */
+
+.ui-user-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12) 0, rgba(15, 23, 42, 1) 55%);
+}
+
+.ui-user-badge__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 0, #0f172a 0, #020617 60%);
+    color: #e5e7eb;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+.ui-user-badge__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ui-user-badge__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.ui-user-badge__name {
+    font-size: 0.83rem;
+}
+
+.ui-user-badge__email {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* ========== Tarjetas de stat ========== */
+
+.ui-stat-card {
+    border-radius: 1rem;
+    padding: 0.95rem 1rem;
+    background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.16) 0, rgba(15, 23, 42, 0.98) 56%);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    box-shadow: 0 0 25px rgba(15, 23, 42, 0.9);
+    position: relative;
+    overflow: hidden;
+}
+
+.ui-stat-card__icon {
+    position: absolute;
+    top: -0.3rem;
+    right: 0.5rem;
+    opacity: 0.12;
+    font-size: 1.6rem;
+}
+
+.ui-stat-card__value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.18rem;
+}
+
+.ui-stat-card__label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.ui-stat-card__sublabel {
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* ========== Tarjetas de track mini ========== */
+
+.ui-track-mini {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.85rem;
+    background: rgba(15, 23, 42, 0.94);
+    border: 1px solid rgba(31, 41, 55, 0.9);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    cursor: default;
+}
+
+.ui-track-mini:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.95);
+    border-color: rgba(34, 197, 94, 0.65);
+}
+
+.ui-track-mini__cover {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 0, #0f172a 0, #020617 60%);
+    font-size: 1.1rem;
+    color: #9ca3af;
+}
+
+.ui-track-mini__cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ui-track-mini__info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.ui-track-mini__title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ui-track-mini__subtitle {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ui-track-mini__extra {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+/* ========== Animaciones utilitarias (para animations.js) ========== */
+
+.ui-hover-glow {
+    transition:
+        box-shadow 0.18s ease,
+        transform 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.ui-hover-glow:hover {
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 1);
+    transform: translateY(-2px);
+    border-color: rgba(96, 165, 250, 0.65);
+}
+
+/* pulso al actualizar tarjeta now-playing */
+@keyframes ui-pulse-update {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.2);
+        transform: translateY(0);
+    }
+    50% {
+        box-shadow: 0 0 0 18px rgba(59, 130, 246, 0);
+        transform: translateY(-1px);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        transform: translateY(0);
+    }
+}
+
+.ui-pulse-update {
+    animation: ui-pulse-update 0.55s ease-out;
+}
+
+/* skeleton loading */
+@keyframes ui-skeleton-loading {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+.ui-skeleton {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        90deg,
+        #020617 0,
+        #020617 30%,
+        #111827 50%,
+        #020617 70%,
+        #020617 100%
+    );
+    background-size: 400px 100%;
+    animation: ui-skeleton-loading 1.2s infinite linear;
+}
+
+/* ========== Controles del visualizer (texto + estado activo) ========== */
+
+.visualizer-controls {
+    margin-top: 0.5rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+}
+
+.visualizer-controls__label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #6b7280;
+}
+
+.visualizer-controls__buttons {
+    display: inline-flex;
+    gap: 0.4rem;
+}
+
+.visualizer-controls__buttons .ui-btn {
+    font-size: 0.78rem;
+    padding-inline: 0.7rem;
+}
+
+.visualizer-controls__btn--active {
+    background: rgba(15, 23, 42, 0.98);
+    border-color: rgba(34, 197, 94, 0.7);
+    box-shadow: 0 0 16px rgba(34, 197, 94, 0.55);
+}
