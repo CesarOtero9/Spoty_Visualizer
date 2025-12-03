@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Professional Spotify Visualizer with real-time effects",
   "scripts": {
-    "dev": "concurrently \"cd backend && python app.py\" \"cd frontend && python -m http.server 3000\"",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "backend": "cd backend && python app.py",
     "frontend": "cd frontend && python -m http.server 3000",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "install-backend": "cd backend && pip install -r requirements.txt",
+    "install-all": "npm install && npm run install-backend"
   },
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

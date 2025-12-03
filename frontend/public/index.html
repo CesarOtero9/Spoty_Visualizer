@@ -3,40 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Spotify Visualizer PRO</title>
 
-    <!-- Estilos principales -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/components.css">
     <link rel="stylesheet" href="../styles/visualizer.css">
 
-    <!-- Para que AppConfig detecte el backend si cambias de host -->
+    <!-- Backend base URL - ESENCIAL -->
     <meta name="api-base-url" content="http://127.0.0.1:8080">
 </head>
-<body>
-    <!-- Root donde LayoutManager construye TODO el dashboard -->
-    <div id="app"></div>
+<body class="app-root">
+    <div id="app">
+        <!-- Shell principal -->
+        <div class="app-shell">
+            <!-- Sidebar -->
+            <aside class="app-sidebar">
+                <!-- Logo -->
+                <div class="app-logo">
+                    <span class="app-logo__icon">🎵</span>
+                    <div class="app-logo__text">
+                        <span class="app-logo__title">Spotify Visualizer</span>
+                        <span class="app-logo__subtitle">PRO</span>
+                    </div>
+                </div>
 
-    <!-- ============ SCRIPTS: orden MUY importante ============ -->
+                <!-- Perfil del usuario -->
+                <div class="app-sidebar__user">
+                    <div class="ui-user-badge">
+                        <div class="ui-user-badge__avatar">
+                            <img id="profile-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231DB954'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='40'%3E♪%3C/text%3E%3C/svg%3E" alt="Profile">
+                        </div>
+                        <div class="ui-user-badge__info">
+                            <div id="profile-name" class="ui-user-badge__name">Conectar Spotify</div>
+                            <div class="ui-user-badge__email">Haz clic para iniciar sesión</div>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Core / configuración -->
+                <!-- Navegación -->
+                <nav class="app-sidebar__nav">
+                    <div class="ui-section-title">
+                        <div class="ui-section-title__main">Navegación</div>
+                        <div class="ui-section-title__subtitle">Panel principal</div>
+                    </div>
+                    <div class="app-sidebar__nav-buttons">
+                        <button id="connect-btn" class="ui-btn ui-btn--primary ui-btn--full">
+                            <span class="ui-btn__label">Conectar Spotify</span>
+                            <span class="ui-icon">🔗</span>
+                        </button>
+                        <button data-visualizer-mode="particles" class="ui-btn ui-btn--ghost">
+                            <span class="ui-btn__label">Partículas</span>
+                        </button>
+                        <button data-visualizer-mode="spectrum" class="ui-btn ui-btn--ghost">
+                            <span class="ui-btn__label">Spectrum</span>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Footer sidebar -->
+                <div class="app-sidebar__footer">
+                    <div class="ui-section-title">
+                        <div class="ui-section-title__main">Estado</div>
+                        <div class="ui-section-title__subtitle" id="connection-status">Desconectado</div>
+                    </div>
+                    <p class="app-sidebar__note">
+                        Visualiza tu música en tiempo real con efectos generativos.
+                    </p>
+                </div>
+            </aside>
+
+            <!-- Contenido principal -->
+            <main class="app-main">
+                <!-- Header principal -->
+                <header class="app-main__header">
+                    <div class="app-main__header-text">
+                        <h1 class="app-main__title">Dashboard</h1>
+                        <p class="app-main__subtitle">Tu actividad musical en tiempo real</p>
+                    </div>
+                    <div class="app-main__header-user">
+                        <div class="header-user__avatar" id="mini-profile-image">U</div>
+                        <div>
+                            <div class="header-user__name" id="mini-profile-name">Usuario</div>
+                            <div class="header-user__tag">Spotify</div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Sección: Now Playing -->
+                <section class="app-section app-section--nowplaying">
+                    <div class="ui-section-title">
+                        <div class="ui-section-title__main">Reproduciendo ahora</div>
+                        <div class="ui-section-title__subtitle">Canción actual</div>
+                    </div>
+
+                    <div class="now-playing-card">
+                        <div class="now-playing-card__cover">
+                            <span>♪</span>
+                        </div>
+                        <div class="now-playing-card__info">
+                            <div class="now-playing-card__title">Conecta tu Spotify</div>
+                            <div class="now-playing-card__artist">Para ver la canción actual</div>
+                            <div class="now-playing-card__meta">
+                                <span class="now-playing-card__meta-item">Esperando conexión</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sección: Visualizer -->
+                <section class="app-section app-section--visualizer">
+                    <div class="visualizer-controls">
+                        <span class="visualizer-controls__label">Modo de visualización:</span>
+                        <div class="visualizer-controls__buttons">
+                            <button data-visualizer-mode="particles" class="ui-btn ui-btn--ghost visualizer-controls__btn--active">
+                                <span class="ui-btn__label">Partículas</span>
+                            </button>
+                            <button data-visualizer-mode="spectrum" class="ui-btn ui-btn--ghost">
+                                <span class="ui-btn__label">Spectrum</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Contenedor del canvas -->
+                    <div id="visualizerContainer" class="visualizer-container">
+                        <!-- El canvas se insertará aquí dinámicamente -->
+                    </div>
+                </section>
+
+                <!-- Sección: Top Artists -->
+                <section class="app-section">
+                    <div class="ui-section-title">
+                        <div class="ui-section-title__main">🎤 Top Artistas</div>
+                        <div class="ui-section-title__subtitle">Últimas 4 semanas</div>
+                    </div>
+                    <div id="top-artists-list" class="top-tracks-list">
+                        <div class="ui-empty-message">Conecta Spotify para ver tus artistas top</div>
+                    </div>
+                </section>
+
+                <!-- Sección: Top Tracks -->
+                <section class="app-section">
+                    <div class="ui-section-title">
+                        <div class="ui-section-title__main">🎵 Top Canciones</div>
+                        <div class="ui-section-title__subtitle">Más escuchadas</div>
+                    </div>
+                    <div id="top-tracks-list" class="top-tracks-list">
+                        <div class="ui-empty-message">Conecta Spotify para ver tus canciones top</div>
+                    </div>
+                </section>
+
+                <!-- Sección: Recent Tracks -->
+                <section class="app-section">
+                    <div class="ui-section-title">
+                        <div class="ui-section-title__main">⏱️ Recientes</div>
+                        <div class="ui-section-title__subtitle">Reproducidas recientemente</div>
+                    </div>
+                    <div id="recent-tracks-list" class="recent-tracks-list">
+                        <div class="ui-empty-message">Conecta Spotify para ver tu historial</div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <!-- Agrega esto temporalmente en index.html dentro del main -->
+    <button id="debug-btn" class="ui-btn ui-btn--ghost" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        🔍 Debug
+    </button>
+
+    <script>
+    // Agrega esto al final de app.js
+    document.addEventListener('DOMContentLoaded', function() {
+        const debugBtn = document.getElementById('debug-btn');
+        if (debugBtn) {
+            debugBtn.addEventListener('click', async function() {
+                console.log("🔍 Iniciando debug manual...");
+
+                // 1. Verificar auth
+                console.log("🔐 Auth tokens:", window.auth ? window.auth.getTokens() : 'No auth');
+
+                // 2. Test endpoint directo
+                try {
+                    const response = await fetch('http://127.0.0.1:8080/api/current-track', {
+                        headers: {
+                            'Authorization': `Bearer ${window.auth.getAccessToken()}`
+                        }
+                    });
+                    const data = await response.json();
+                    console.log("📦 Respuesta cruda del backend:", data);
+
+                    // 3. Verificar visualizador
+                    console.log("🎨 Visualizador actual:", window.currentVisualizer);
+                    console.log("🎛️ Estado del visualizador:", window.currentVisualizer ? window.currentVisualizer.audioFeatures : 'N/A');
+
+                } catch (error) {
+                    console.error("❌ Error en debug:", error);
+                }
+            });
+        }
+    });
+    </script>
+
+    <!-- ============ SCRIPTS: ORDEN CORREGIDO ============ -->
+
+        <!-- Línea 173: -->
+    <!-- 1. Configuración -->
     <script src="../js/core/config.js"></script>
+
+    <!-- 2. UI -->
+    <script src="../js/ui/ui-components.js"></script>
+    <script src="../js/ui/layout.js"></script>
+    <script src="../js/ui/animations.js"></script>  <!-- ¡Ya corregido! -->
+
+    <!-- 3. Auth y API -->
     <script src="../js/core/auth.js"></script>
     <script src="../js/core/spotify-api.js"></script>
 
-    <!-- UI (componentes + layout) -->
-    <script src="../js/ui/ui-components.js"></script>
-    <script src="../js/ui/animations.js"></script>
-    <script src="../js/ui/layout.js"></script>
-
-    <!-- Visualizer (colores + efectos) -->
+    <!-- 4. Visualizadores - ORDEN ESTRICTO -->
+    <!-- En la sección de scripts -->
     <script src="../js/visualizer/color-sync.js"></script>
-    <script src="../js/visualizer/particles.js"></script>
+    <script src="../js/visualizer/creative_nodes.js"></script> <!-- Nuevo sistema -->
     <script src="../js/visualizer/spectrum.js"></script>
-    <script src="../js/visualizer/visualizer.js"></script>
+    <script src="../js/visualizer/visualizer.js"></script> <!-- Este DEBE ir último -->
 
-    <!-- Orquestador principal -->
+    <!-- 5. App principal -->
     <script src="../js/app.js"></script>
 </body>
 </html>

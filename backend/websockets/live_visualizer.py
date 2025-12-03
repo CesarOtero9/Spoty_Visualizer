@@ -3,17 +3,6 @@
 """
 Servidor de WebSockets usando Flask-SocketIO para enviar al frontend
 la info de la canción actual en "tiempo real" para el visualizador.
-
-Diseño:
-- `socketio` se inicializa con `init_socketio(app)` desde app.py.
-- El cliente se conecta y manda su access_token con el evento
-  "register_access_token".
-- Un hilo de fondo recorre los clientes registrados y les envía
-  periódicamente el evento "current_track" con datos actualizados.
-
-Requisitos:
-- flask-socketio
-- eventlet (o gevent, pero eventlet es lo más sencillo en local)
 """
 
 from __future__ import annotations
@@ -24,12 +13,12 @@ from threading import Lock
 from flask import request
 from flask_socketio import SocketIO, emit, disconnect
 
-from backend.services.spotify_service import SpotifyService
+from services.spotify_service import EnhancedSpotifyService
 
 # Instancia sin app; se inicializa luego
 socketio = SocketIO(cors_allowed_origins="*")
 
-spotify_service = SpotifyService()
+spotify_service = EnhancedSpotifyService()
 
 # Diccionario: { session_id: access_token }
 connected_clients: dict[str, str] = {}
@@ -42,10 +31,6 @@ _thread_lock = Lock()
 def init_socketio(app):
     """
     Llamar desde app.py para inicializar SocketIO con la app Flask:
-
-    from websockets.live_visualizer import socketio, init_socketio
-    app = Flask(__name__)
-    init_socketio(app)
     """
     global socketio
     socketio.init_app(app, cors_allowed_origins="*")
@@ -73,7 +58,7 @@ def _background_worker():
 
         for sid, access_token in clients_snapshot.items():
             try:
-                track_data = spotify_service.get_current_track_with_features(access_token)
+                track_data = spotify_service.get_current_track_full(access_token)
                 if track_data is None:
                     # Algo falló al consultar Spotify, no emitimos nada
                     continue
@@ -82,7 +67,7 @@ def _background_worker():
                 socketio.emit(
                     "current_track",
                     track_data,
-                    room=sid
+                    room=sid,
                 )
 
             except Exception as e:

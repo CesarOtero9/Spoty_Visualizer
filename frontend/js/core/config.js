@@ -1,56 +1,52 @@
 // frontend/js/core/config.js
-// Configuración global de la aplicación
-
 (function () {
-    const DEFAULT_API_BASE = 'http://127.0.0.1:8080';
+    "use strict";
 
-    // Permite sobreescribir el backend con una meta tag si algún día lo sacas a producción:
-    // <meta name="api-base-url" content="https://mi-backend.com">
-    function detectApiBaseURL() {
-        try {
-            const meta = document.querySelector('meta[name="api-base-url"]');
-            if (meta && meta.content) return meta.content.trim();
-        } catch (e) {
-            console.warn('No se pudo leer meta api-base-url:', e);
-        }
-        return DEFAULT_API_BASE;
+    console.log("🔧 Inicializando AppConfig...");
+
+    // Opción 1: Buscar meta tag
+    let apiBaseUrl = null;
+    const apiMeta = document.querySelector('meta[name="api-base-url"]');
+
+    if (apiMeta) {
+        apiBaseUrl = apiMeta.content.trim();
+        console.log("📌 Meta tag encontrado:", apiBaseUrl);
+    } else {
+        console.warn("⚠️ No se encontró meta tag 'api-base-url'");
     }
 
-    const apiBaseURL = detectApiBaseURL();
+    // Opción 2: Valor por defecto si no hay meta tag o está vacío
+    if (!apiBaseUrl) {
+        apiBaseUrl = 'http://127.0.0.1:8080';
+        console.log("📌 Usando URL por defecto:", apiBaseUrl);
+    }
 
-    window.AppConfig = {
+    // Verificar que la URL sea válida
+    if (!apiBaseUrl.startsWith('http')) {
+        console.error("❌ URL inválida:", apiBaseUrl);
+        apiBaseUrl = 'http://127.0.0.1:8080';
+        console.log("📌 Corrigiendo a URL por defecto:", apiBaseUrl);
+    }
+
+    // Crear configuración global
+    const AppConfig = {
+        apiBaseUrl: apiBaseUrl,
+        pollingIntervalMs: 4000,
+        statsIntervalMs: 30000,
         visualizer: {
-            effects: ['particles', 'waves', 'bars', 'circular'],
-            defaultEffect: 'particles',
-            nodeCount: 80,
-            connectionDistance: 150
-        },
-        spotify: {
-            // Esto es informativo, el backend es quien realmente pide estos scopes
-            scopes: [
-                'user-read-currently-playing',
-                'user-read-playback-state',
-                'user-top-read',
-                'user-read-recently-played',
-                'user-library-read',
-                'user-read-email',
-                'user-read-private'
-            ].join(' ')
-        },
-        api: {
-            baseURL: apiBaseURL,
-            timeout: 10000
-        },
-        auth: {
-            storageKeys: {
-                accessToken: 'spotify_access_token',
-                refreshToken: 'spotify_refresh_token',
-                tokenExpiry: 'spotify_token_expiry'
-            },
-            // margen para considerar un token "casi expirado" (segundos)
-            expiryLeewaySeconds: 60
+            defaultMode: 'particles',
+            maxFPS: 60
         }
     };
 
-    console.log('🌐 AppConfig inicializado:', window.AppConfig);
+    // Asignar a window
+    window.AppConfig = AppConfig;
+
+    console.log("✅ AppConfig inicializado:", AppConfig);
+    console.log("📍 Backend URL:", AppConfig.apiBaseUrl);
+
+    // Debug adicional
+    console.log("🔍 window.AppConfig definido:", typeof window.AppConfig !== 'undefined');
+    console.log("🔍 window.AppConfig.apiBaseUrl:", window.AppConfig.apiBaseUrl);
+
 })();
